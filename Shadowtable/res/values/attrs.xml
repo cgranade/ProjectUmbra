@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IPSelector">
+        <attr name="value" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="InitiativeEditor">
+        <attr name="score" format="integer"/>
+        <attr name="tie" format="integer"/>
+        <attr name="ip" format="integer"/>
+    </declare-styleable>
+</resources>

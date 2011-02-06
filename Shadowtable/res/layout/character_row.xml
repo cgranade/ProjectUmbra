@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 	character_row.xml: UI layout for a single combatant entry in
+ 		a ListView.
+ 	
+ 	© 2011 Christopher E. Granade (cgranade@gmail.com).
+	 
+	This file is part of Shadowtable.
+	Shadowtable is free software: you can redistribute it and/or modify
+ 	it under the terms of the GNU General Public License as published by
+ 	the Free Software Foundation, either version 3 of the License, or
+ 	(at your option) any later version.
+
+	Shadowtable is distributed in the hope that it will be useful,
+ 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ 	GNU General Public License for more details.
+ 
+ 	You should have received a copy of the GNU General Public License
+ 	along with Shadowtable.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="90sp"
+    android:padding="6dip"
+    android:orientation="horizontal">
+    
+    <TextView
+    	android:id="@+id/turn_arrow"
+    	android:text="»"
+    	android:layout_height="match_parent"
+    	android:layout_width="30dip"
+    	android:layout_weight="1"
+    	android:gravity="center"
+    	android:textSize="30dip"
+    />
+    
+    <LinearLayout
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="100"
+    	android:orientation="vertical"
+    >
+    	
+	    <TextView
+            android:id="@+id/char_name"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+        />
+        
+        <LinearLayout
+       		android:layout_height="wrap_content"
+       		android:layout_width="wrap_content"
+       		android:layout_weight="1"
+       		android:orientation="horizontal"
+       	>
+	   		<TextView
+	            android:layout_width="120sp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            android:id="@+id/cur_init"
+	            android:singleLine="true"
+	            android:ellipsize="marquee"
+	        />
+	         <!-- 
+	        <TextView
+	            android:layout_width="45sp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            android:id="@+id/matrix_init"
+	            android:singleLine="true"
+	            android:ellipsize="marquee"
+	            android:text="12"
+	        /> -->
+        </LinearLayout>
+    
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="50sp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:id="@+id/dmg_phys"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:text="0P"
+        android:gravity="center_vertical"
+    />
+    <TextView
+        android:layout_width="50sp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:id="@+id/dmg_stun"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:text="0S"
+        android:gravity="center_vertical"
+    />
+        
+    <TextView
+        android:layout_width="50sp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:id="@+id/wound_mod"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:text="-0"
+        android:gravity="center_vertical"
+    />
+    
+            
+</LinearLayout>

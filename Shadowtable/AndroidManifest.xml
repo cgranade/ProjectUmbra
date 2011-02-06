@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 	AndroidManifest.xml: Main manifest for the Shadowtable application.
+ 	
+ 	© 2011 Christopher E. Granade (cgranade@gmail.com).
+	 
+	This file is part of Shadowtable.
+	Shadowtable is free software: you can redistribute it and/or modify
+ 	it under the terms of the GNU General Public License as published by
+ 	the Free Software Foundation, either version 3 of the License, or
+ 	(at your option) any later version.
+
+	Shadowtable is distributed in the hope that it will be useful,
+ 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ 	GNU General Public License for more details.
+ 
+ 	You should have received a copy of the GNU General Public License
+ 	along with Shadowtable.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto" package="com.cgranade.shadowtable">
+
+    <uses-sdk android:minSdkVersion="Honeycomb"></uses-sdk>
+    <supports-screens android:smallScreens="false"
+                  android:normalScreens="false"
+                  android:largeScreens="false"
+                  android:xlargeScreens="true" />
+
+    <application
+    	android:theme="@android:style/Theme.Holo"
+    	android:label="@string/app_title">
+
+        <activity android:name="com.cgranade.shadowtable.InitTableActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

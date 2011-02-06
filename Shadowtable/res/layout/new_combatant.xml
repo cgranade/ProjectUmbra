@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 	new_combatant.xml: UI layout for the "New Combatant" dialog. 
+ 	
+ 	© 2011 Christopher E. Granade (cgranade@gmail.com).
+	 
+	This file is part of Shadowtable.
+	Shadowtable is free software: you can redistribute it and/or modify
+ 	it under the terms of the GNU General Public License as published by
+ 	the Free Software Foundation, either version 3 of the License, or
+ 	(at your option) any later version.
+
+	Shadowtable is distributed in the hope that it will be useful,
+ 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ 	GNU General Public License for more details.
+ 
+ 	You should have received a copy of the GNU General Public License
+ 	along with Shadowtable.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="600sp"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:padding="10sp"
+>
+  
+  	<!--  NAME SECTION -->
+    <TextView
+    	android:text="@string/name"
+      	android:layout_width="match_parent"
+      	android:layout_height="wrap_content"
+   		style="@style/SeparatorBar"
+	/>
+    <EditText
+    	android:text=""
+   		android:layout_height="wrap_content"
+   		android:id="@+id/name_edit"
+ 	android:layout_width="match_parent"/>
+      
+    <!--  INITIATIVE SECTION -->
+    <TextView
+    	android:text="Initiative"
+    	android:id="@+id/textView2"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	style="@style/SeparatorBar"
+   	/>
+    <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/tableLayout1">
+        <TableRow android:id="@+id/tableRow1" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:text="@string/inittype_phys" android:id="@+id/textView1" android:layout_width="100sp" android:layout_height="wrap_content"></TextView>
+		    <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_phys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+        </TableRow>
+        
+        <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:id="@+id/textView3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/inittype_astr"></TextView>
+		    <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_astr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+        </TableRow>
+        
+        <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:id="@+id/textView4" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/inittype_matr"></TextView>
+		    <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_matr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+        </TableRow>
+    </TableLayout>
+          
+    <!-- CONDITION MONITORS SECTION -->
+    <TextView
+        android:text="Condition Monitors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SeparatorBar"
+    />
+    <TableLayout android:id="@+id/tableLayout2" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TableRow android:id="@+id/tableRow6" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:text="Physical" android:id="@+id/textView10" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="Stun" android:id="@+id/textView11" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow7" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <EditText 
+	            android:layout_width="80sp"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/numberPicker1"
+	            android:inputType="number" />
+	        <EditText
+		        android:layout_width="80sp"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/numberPicker2"
+	        android:inputType="number"  />
+        </TableRow>
+    </TableLayout>
+
+    <FrameLayout
+        android:paddingTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:gravity="center"
+        android:text="@string/add_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/add_btn"
+    />
+    </FrameLayout>
+  
+</LinearLayout>

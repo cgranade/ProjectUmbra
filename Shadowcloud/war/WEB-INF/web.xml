@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Shadowcloud</servlet-name>
+		<servlet-class>com.cgranade.shadowcloud.ShadowcloudServlet</servlet-class>
+	</servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Shadowcloud</servlet-name>
+        <url-pattern>/api/json</url-pattern>
+    </servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>CheckLogin</servlet-name>
+	    <servlet-class>com.cgranade.shadowcloud.CheckLoginServlet</servlet-class>
+	</servlet>
+    
+    <servlet-mapping>
+        <servlet-name>CheckLogin</servlet-name>
+        <url-pattern>/api/json/check_login</url-pattern>
+    </servlet-mapping>
+	
+	<servlet>
+        <servlet-name>QueryInvites</servlet-name>
+        <servlet-class>com.cgranade.shadowcloud.QueryInvitesServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>QueryInvites</servlet-name>
+        <url-pattern>/api/json/invites</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Character</servlet-name>
+        <servlet-class>com.cgranade.shadowcloud.CharacterServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Character</servlet-name>
+        <url-pattern>/api/json/character</url-pattern>
+    </servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<security-constraint>
+        <web-resource-collection>
+            <url-pattern>/api/json</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>
