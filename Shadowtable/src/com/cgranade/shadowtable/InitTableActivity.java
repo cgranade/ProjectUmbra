@@ -25,21 +25,10 @@ package com.cgranade.shadowtable;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cgranade.gamemodel.sr4.Combatant;
-import com.cgranade.gamemodel.sr4.Combatant.InitiativeScore;
-import com.cgranade.gamemodel.sr4.CombatantList;
-import com.cgranade.gamemodel.sr4.DamageType;
-import com.cgranade.gamemodel.sr4.InitiativeType;
-import com.cgranade.gamemodel.sr4.Utils;
-import com.cgranade.shadowtable.widgets.InitiativeEditor;
-
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,10 +36,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DialerFilter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.cgranade.gamemodel.sr4.Combatant;
+import com.cgranade.gamemodel.sr4.Combatant.InitiativeScore;
+import com.cgranade.gamemodel.sr4.CombatantList;
+import com.cgranade.gamemodel.sr4.DamageType;
+import com.cgranade.gamemodel.sr4.InitiativeType;
+import com.cgranade.gamemodel.sr4.Utils;
+import com.cgranade.shadowtable.widgets.CombatantDetailsPane;
+import com.cgranade.shadowtable.widgets.InitiativeEditor;
 
 public class InitTableActivity extends Activity {
 
@@ -71,6 +68,7 @@ public class InitTableActivity extends Activity {
     private ListView initList;
     private CombatantAdapter charAdapter;
     private CombatantList characters;
+    private CombatantDetailsPane combDetailsPane;
     
     private TextView cmdLineDisp, curTurn, curIP;
     
@@ -116,6 +114,8 @@ public class InitTableActivity extends Activity {
         curTurn = (TextView) findViewById(R.id.cur_turn);
         curIP = (TextView) findViewById(R.id.cur_ip);
         curIP.setText(Utils.ipString(1));
+        
+        combDetailsPane = (CombatantDetailsPane) findViewById(R.id.comb_details);
 
         // Set up the initiative list.
         characters = new CombatantList();
@@ -137,13 +137,21 @@ public class InitTableActivity extends Activity {
 
 			public void onItemClick(AdapterView<?> parent, View view, int pos,
 					long id) {
-				if (inputState == InputState.DAMAGE_TO_WHOM) {
-					Combatant ch = charAdapter.getItem(pos); 
-					ch.applyDamage(dmgType, Integer.parseInt(dmgSeq));
-					inputState = InputState.IDLE;
-					charAdapter.notifyDataSetChanged();
-					
-					updateCmdLineDisplay();
+				
+				Combatant ch = charAdapter.getItem(pos);
+				
+				switch (inputState) {
+					case DAMAGE_TO_WHOM: 
+						ch.applyDamage(dmgType, Integer.parseInt(dmgSeq));
+						inputState = InputState.IDLE;
+						charAdapter.notifyDataSetChanged();
+						
+						updateCmdLineDisplay();
+						break;
+						
+					default:
+						combDetailsPane.setCurrentCombatant(ch);
+						break;
 				}
 			}
         	
@@ -200,7 +208,7 @@ public class InitTableActivity extends Activity {
 				Map<InitiativeType, InitiativeScore> scores = new HashMap<InitiativeType, Combatant.InitiativeScore>();
 				
 				for (Map.Entry<InitiativeType, InitiativeEditor> ent: initEditors.entrySet()) {
-					scores.put(ent.getKey(), ent.getValue().getAsInitiative());
+					scores.put(ent.getKey(), ent.getValue().getInitiative());
 				}
 				
 				c = new Combatant(name, scores);

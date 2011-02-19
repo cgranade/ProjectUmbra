@@ -63,8 +63,14 @@ public class InitiativeEditor extends TableLayout {
 		setIP(sa.getInt(R.styleable.InitiativeEditor_ip, 1));
 	}
 	
-	public InitiativeScore getAsInitiative() {
+	public InitiativeScore getInitiative() {
 		return new Combatant.InitiativeScore(getScore(), getIP(), getTie());
+	}
+	
+	public void setInitiative(InitiativeScore newScore) {
+		setScore(newScore.getScore());
+		setIP(newScore.getnIP());
+		setTie(newScore.getTieBreaker());
 	}
 	
 	public int getScore() {
