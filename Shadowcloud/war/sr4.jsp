@@ -75,8 +75,8 @@
         
         <% if (users.isUserLoggedIn()) { %>
             <div data-role="controlgroup">
-	            <a href="#create-character" class="invite-joinlink" data-role="button" data-rel="dialog">Create a New Character</a>
-	            <a href="#use-prev-character" data-role="button" data-rel="dialog">Use a Previous Character</a>
+	            <a href="#create-character" class="invite-joinlink" data-role="button">Create a New Character</a>
+	            <a href="#use-prev-character" data-role="button">Use a Previous Character</a>
 	        </div>
         
             
@@ -99,7 +99,14 @@
         <p>
             In order to create a new character, we need to know a few details about your character!
         </p>
-        <form>
+        
+        <%-- We make the form post to the current page. --%>
+        <form action="/sr4.jsp#character-postcreate" method="get">
+            <%-- FIXME: This form submission isn't working! --%>
+            <!--  Hidden values -->
+            <input type="hidden" name="action" value="create_character" />
+            <input type="hidden" name="invite_id" value="" />
+            
             <h2>Basics</h2>
             <div data-role="fieldcontain">
                 <label for="name">Name:</label>
@@ -125,7 +132,77 @@
                 <label for="cm_cur_phys">Current Physical Damage:</label>
                 <input type="range" name="cm_cur_phys" id="cm_cur_phys" min="0" max="30" value="0"  />
             </div>
+            
+            <div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
         </form>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="character-postcreate">
+
+    <div data-role="header">
+        <h1>$GAMENAME</h1>
+    </div><!-- /header -->
+
+    <%--
+        TODO: Show waiting spinner until DM approves.
+              Until that is implemented, this is a boring page as it just skips
+              ahead to the status screen.
+    --%>
+
+    <div data-role="content">   
+        <script type="text/javascript">
+            //$.mobile.changePage("sr4.jsp#character-status");
+        </script>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="character-status">
+
+    <div data-role="header">
+        <h1>Character Status</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+		        <h2>Condition</h2>
+		        <p style="font-size: x-large;">
+		            <span id="charstatus-cm-phys-cur">0</span><span style="font-size: large;">P</span> /
+		            <span id="charstatus-cm-phys-max">10</span><br/>
+		            <span id="charstatus-cm-stun-cur">0</span><span style="font-size: large;">S</span> /
+                    <span id="charstatus-cm-stun-max">10</span>
+		        </p>
+		        
+		        <p style="font-size: x-large;">
+		            Wound: <span id="charstatus-woundmod">-0</span>
+		        </p>
+	        </div>
+	        <div class="ui-block-b">
+	           <h2>Initiative</h2>
+	           <p style="font-size: x-large;">
+	               <span id="charstatus-init-score" style="font-size: x-large;">12</span>
+	               <span id="charstatus-init-tie" style="font-size: large;">(4)</span>
+	               <span id="charstatus-init-ip" style="font-size: x-large;">●●○○</span>
+	           </p>
+	           <fieldset data-role="controlgroup">
+	               <input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
+		           <label for="radio-choice-1">Physical</label>
+		
+		           <input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2"  />
+		           <label for="radio-choice-2">Astral</label>
+		
+		           <input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3"  />
+		           <label for="radio-choice-3">Matrix</label>
+	           </fieldset>
+	        </div>
+        </div>
+        <hr />
+        <h2>Game Status</h2>
+        <p style="font-size: large;">
+            Turn <span id="gamestatus-curturn">3</span> <span id="gamestatus-curpass">●●○○</span>            
+        </p>
+        
     </div><!-- /content -->
 </div><!-- /page -->
 
