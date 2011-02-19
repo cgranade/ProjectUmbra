@@ -36,8 +36,14 @@ import com.cgranade.shadowtable.widgets.InitiativeEditor;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -47,13 +53,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class InitTableActivity extends Activity {
-    
+
+	// INNER TYPES ////////////////////////////////////////////////////////////
+	
 	private static enum InputState {
 		IDLE,
 		TYPING_DAMAGE,
 		DAMAGE_TO_WHOM
 	}
     
+	// MEMBER VARIABLES ///////////////////////////////////////////////////////
+	
     private InputState inputState = InputState.IDLE;
     private String dmgSeq = "";
     private DamageType dmgType = DamageType.P;
@@ -64,8 +74,35 @@ public class InitTableActivity extends Activity {
     
     private TextView cmdLineDisp, curTurn, curIP;
     
+    //private SharedPreferences dmPolicies = PreferenceManager.getDefaultSharedPreferences(this);
+    
+    // CONSTRUCTORS ///////////////////////////////////////////////////////////
+    
     public InitTableActivity() { }
  
+    // UTILITY METHODS ////////////////////////////////////////////////////////
+    
+    private void updateCmdLineDisplay() {
+    	String text = "";
+    	
+    	switch (inputState) {
+    		case IDLE:
+    			break;
+    			
+    		case TYPING_DAMAGE:
+    			text = "dmg " + dmgSeq;
+    			break;
+    			
+    		case DAMAGE_TO_WHOM:
+				text = "dmg " + dmgSeq + dmgType.toString() + " to whom?";
+				break;
+    	}
+    	
+    	cmdLineDisp.setText("> " + text);
+    }
+    
+    // EVENT HANDLERS /////////////////////////////////////////////////////////
+    
     /** Called with the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,25 +157,6 @@ public class InitTableActivity extends Activity {
 			}
 		});
     }
-
-    private void updateCmdLineDisplay() {
-    	String text = "";
-    	
-    	switch (inputState) {
-    		case IDLE:
-    			break;
-    			
-    		case TYPING_DAMAGE:
-    			text = "dmg " + dmgSeq;
-    			break;
-    			
-    		case DAMAGE_TO_WHOM:
-				text = "dmg " + dmgSeq + dmgType.toString() + " to whom?";
-				break;
-    	}
-    	
-    	cmdLineDisp.setText("> " + text);
-    }
     
     public void applyDamageBtnListener(View v) {
     	if (inputState == InputState.IDLE) {
@@ -187,6 +205,7 @@ public class InitTableActivity extends Activity {
 				
 				c = new Combatant(name, scores);
 				charAdapter.add(c);
+				// TODO: respect policy as to where to add combatants.
 				dialog.dismiss();
 				
 				Log.d("SerializationTest", charAdapter.serializeToJson());
@@ -194,5 +213,25 @@ public class InitTableActivity extends Activity {
 		});
     	
     	dialog.show();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.inittable_options, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	// TODO Auto-generated method stub
+    	switch (item.getItemId()) {
+    		case R.id.dm_policies:
+    			Intent prefsIntent = new Intent(this, DMPolicyPreferences.class);
+    			startActivity(prefsIntent);
+    	    	return true;
+	    	default:
+	    		return super.onOptionsItemSelected(item);
+    	}
     }
 }

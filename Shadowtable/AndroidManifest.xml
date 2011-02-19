@@ -27,17 +27,19 @@
                   android:normalScreens="false"
                   android:largeScreens="false"
                   android:xlargeScreens="true" />
+                  
+    <application android:theme="@android:style/Theme.Holo" android:label="@string/app_title">
 
-    <application
-    	android:theme="@android:style/Theme.Holo"
-    	android:label="@string/app_title">
-
-        <activity android:name="com.cgranade.shadowtable.InitTableActivity">
+        <activity android:name="com.cgranade.shadowtable.InitTableActivity" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DMPolicyPreferences"
+            android:label="DM Policies"
+        />
 
     </application>
 

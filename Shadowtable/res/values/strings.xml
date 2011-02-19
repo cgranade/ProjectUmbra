@@ -31,5 +31,10 @@
     <string name="inittype_phys">Physical</string>
     <string name="inittype_astr">Astral</string>
     <string name="inittype_matr">Matrix</string>
+    <string name="prefcat_init_policies">Initiative Order Policies</string>
+    <string name="inittype_phys_header">Initiative(<i>Physical</i>)</string>
+    
+    <string name="dmgtype_phys">Physical</string>
+    <string name="dmgtype_stun">Stun</string>
 </resources>
 
