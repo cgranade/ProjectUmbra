@@ -21,12 +21,19 @@
 
 invitesList = [];
 
+knownGameSystemHandlers = {
+	"com.cgranade.gamemodel.sr4": "sr4.jsp"
+};
+
 function createInviteDialog(idx) {
 	invite = invitesList[idx];
 	
 	$('.invite-whom').text(invite.hostNickname);
 	$('.invite-addr').text(invite.hostAddress);
 	$('.invite-game').text(invite.gameName);
+	$('.invite-joinlink').attr('href',knownGameSystemHandlers[invite.gameSystem]);
+	
+	
 }
 
 function getInvites(callback) {

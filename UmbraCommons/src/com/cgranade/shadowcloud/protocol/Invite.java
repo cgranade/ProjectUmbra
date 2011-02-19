@@ -23,6 +23,15 @@ package com.cgranade.shadowcloud.protocol;
 
 public class Invite {
 	private String gameName, hostNickname, hostAddress;
+	private String gameSystem;
+	
+	public String getGameSystem() {
+		return gameSystem;
+	}
+	
+	public void setGameSystem(String gameSystem) {
+		this.gameSystem = gameSystem;
+	}
 	
 	public String getGameName() {
 		return gameName;

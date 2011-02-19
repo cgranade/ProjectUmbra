@@ -28,7 +28,7 @@ import com.cgranade.gamemodel.sr4.Combatant.InitiativeScore;
 
 public class CombatantList extends java.util.ArrayList<Combatant> {
 
-	private static final long serialVersionUID = -4586020555536547931L;
+	private static final long serialVersionUID = 1L;
 	
 	static final Comparator<Combatant> DEFAULT_COMPARATOR = new Comparator<Combatant>() {
 		public int compare(Combatant comb1, Combatant comb2) {
@@ -50,8 +50,30 @@ public class CombatantList extends java.util.ArrayList<Combatant> {
 	private int nowScore = Integer.MAX_VALUE;
 	private int nowTie = Integer.MAX_VALUE;
 	private int nowTie2 = 0; // Used if there's a tie in the tiebreakers.
+							 // TODO: figure out how to implement nowTie2.
 	
 	private int currentComb = -1;
+	
+	/**
+	 * 
+	 * @warning Assumes that the CombatantList has been sorted already.
+	 * @return The smallest index {@code idx} such that {@code get(idx).getCurrentInitScore() <= time}.
+	 */
+	public int timeToIndex(InitiativeScore time) {
+		// TODO!
+		throw new UnsupportedOperationException("not yet implemented");
+	}
+	
+	@Override
+	public void add(int index, Combatant element) {
+		// TODO: handle possible invalidation of currentComb.
+		throw new UnsupportedOperationException("not yet implemented");
+		//super.add(index, element);
+	}
+	
+	public void addInNaturalOrder(Combatant comb) {
+		add(timeToIndex(comb.getCurrentInitScore()), comb);
+	}
 	
 	public int getCurrentTurn() {
 		return nowTurn;
@@ -60,7 +82,7 @@ public class CombatantList extends java.util.ArrayList<Combatant> {
 	public void nextCombatant() {
 		
 		boolean canGo = false;
-		Combatant comb;
+		Combatant comb = getCurrentCombatant();
 		
 		while (!canGo) {
 			currentComb++;
@@ -78,6 +100,8 @@ public class CombatantList extends java.util.ArrayList<Combatant> {
 			canGo = comb == null ? true : nowIP < comb.getCurrentInitScore().getnIP();
 		}
 		
+		nowScore = comb.getCurrentInitScore().getScore();
+		nowTie = comb.getCurrentInitScore().getTieBreaker();
 		
 	}
 	

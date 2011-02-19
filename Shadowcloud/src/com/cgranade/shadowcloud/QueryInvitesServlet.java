@@ -55,6 +55,7 @@ public class QueryInvitesServlet extends HttpServlet {
 		i.setGameName("PI Gaming Club");
 		i.setHostAddress("cgranade@gmail.com");
 		i.setHostNickname("Chris G.");
+		i.setGameSystem("com.cgranade.gamemodel.sr4");
 		msg.add(i);
 		
 		Gson gson = new Gson();

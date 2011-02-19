@@ -20,7 +20,7 @@
  along with Shadowcloud.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-	<application></application>
+	<application>project-umbra</application>
 	<version>1</version>
 	
 	<!-- Configure java.util.logging -->
