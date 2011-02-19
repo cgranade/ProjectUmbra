@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8sp"
+>
+    
+    <!-- Combatant Name -->
+
+    <TextView
+        android:id="@+id/comb_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Placeholder"
+        style="@style/TextAppearance.BigName"
+   	/>
+    <TextView
+        android:id="@+id/comb_kind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Player Character"
+        android:paddingBottom="16sp"
+    />
+   	
+   	<!-- Initiative Display -->
+   	         
+    <TextView
+        android:text="Initiative"                             
+        style="@style/SmallSeparatorBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+	/>
+                   
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8sp"
+        android:paddingBottom="16sp"
+        android:stretchColumns="0"
+    >
+        <TableRow>
+            <ToggleButton
+                android:id="@+id/inittoggle_phys"
+                android:textOn="@string/inittype_phys"
+                android:textOff="@string/inittype_phys"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+            />
+            <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_phys"
+            />
+        </TableRow>
+        <TableRow>
+            <ToggleButton
+                android:id="@+id/inittoggle_astr"
+                android:textOn="@string/inittype_astr"
+                android:textOff="@string/inittype_astr"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+            />
+            <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_astr"
+            />
+        </TableRow>
+        <TableRow>
+            <ToggleButton
+                android:id="@+id/inittoggle_matr"
+                android:textOn="@string/inittype_matr"
+                android:textOff="@string/inittype_matr"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+            />
+            <com.cgranade.shadowtable.widgets.InitiativeEditor
+                android:id="@+id/init_edit_matr"
+            />
+        </TableRow>
+    </TableLayout>
+   	           
+    <!-- Condition Monitors -->
+   	           
+    <TextView
+        android:text="Condition Monitors"                             
+        style="@style/SmallSeparatorBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+               
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16sp"
+        android:weightSum="3"
+    >
+	    <TextView
+            android:id="@+id/cm_phys"
+	        android:text="10P / 12"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:layout_weight="1"
+	        android:textSize="22sp"
+	        android:padding="6sp"
+	    />
+	    <TextView
+            android:id="@+id/cm_stun"
+	        android:text="10S / 12"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:layout_weight="1"
+	        android:textSize="22sp"
+	        android:padding="6sp"
+	    />
+        <TextView
+            android:id="@+id/wound_mod"
+            android:text="Wound Mod: -0"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:padding="6sp"
+        />
+    </LinearLayout>
+    
+    <!--  Player Information -->
+               
+    <TextView
+        android:text="Player Information"                             
+        style="@style/SmallSeparatorBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+    <TextView
+        android:text="No player is connected to $CHARNAME."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+</LinearLayout>
+

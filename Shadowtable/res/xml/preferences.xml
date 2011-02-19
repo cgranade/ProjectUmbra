@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/prefcat_init_policies">
+        <ListPreference android:entries="@array/pref_dmpol_newcomb_labels" android:title="New Combatant Placement" android:summary="Where should new combatants be placed on the initiative order?" android:entryValues="@array/pref_dmpol_newcomb_values" android:key="dmpol_newcomb" android:defaultValue="natural"></ListPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

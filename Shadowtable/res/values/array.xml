@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_dmpol_newcomb_labels">
+        <item>Place at bottom of the table</item>
+        <item>Insert in natural order according to initiative score</item>
+    </string-array>
+    <string-array name="pref_dmpol_newcomb_values">
+        <item>bottom</item>
+        <item>natural</item>
+    </string-array>
+</resources>
